@@ -2,7 +2,7 @@ import { type FormEvent, useState } from "react";
 import { api } from "../../utils/api";
 
 const Uploader = () => {
-  const hello = api..useQuery({ text: "from tRPC" });
+  const kritik = api.kritik.getAll.useQuery();
   const [value, setValue] = useState("");
   const [santri, setSantri] = useState("");
   const handleChange = (e: FormEvent) => {
@@ -48,9 +48,19 @@ const Uploader = () => {
       <div className="p-1" />
 
       <form>
-        {hello.data ? (
+        {kritik.data ? (
           <select className="w-full overflow-visible rounded-md border">
-            {hello.data ? <option>{hello.data.greetings}</option> : <></>}
+            {kritik.data ? (
+              kritik.data.map((i) => {
+                return (
+                  <option key={i.id} value={i.id}>
+                    {i.kritik}
+                  </option>
+                );
+              })
+            ) : (
+              <></>
+            )}
             {/* <option>asd</option> */}
           </select>
         ) : (

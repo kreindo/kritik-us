@@ -13,4 +13,17 @@ export const kritikRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.kritik.findMany();
   }),
+  // mutate: publicProcedure.mutation("create-kritik", {
+  //   input: z.object({
+  //     kritik: z.string(),
+  //   }),
+  //   resolve: async ({ ctx, input }) => {
+  //     const result = await ctx.prisma.kritik.create({
+  //       data: {
+  //         kritik: input.kritik,
+  //       },
+  //     });
+  //     return result;
+  //   }
+  // })
 });
