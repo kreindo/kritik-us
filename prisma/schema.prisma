@@ -6,12 +6,23 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "mysql"
     url      = env("DATABASE_URL")
 }
 
-model Example {
+model Santri {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+    name      String
+    kritik    Kritik[]
+}
+
+model Kritik {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    kritik    String
+    santri    Santri   @relation(fields: [kritikId], references: [id])
+    kritikId  String
 }
